@@ -1,0 +1,28 @@
+{
+    "name": "rvsitebuilder/filemanager",
+    "alias": "File Manager",
+    "description": "",
+    "keywords": [],
+    "app-launcher": 1,
+    "app-launcher-route": "admin.filemanager.dashboard.index",
+    "icon": "/vendor/rvsitebuilder/filemanager/images/icon-app_filemanager.png",
+    "require": {},
+    "require-dev": {},
+    "php_requires_functions": [
+        "proc_open",
+        "proc_get_status",
+        "proc_close"
+    ],
+    "php_requires_extensions": [
+        "gd",
+        "fileinfo",
+        "exif"
+    ],
+    "php_ini_setting": {},
+    "admin-menu": [
+        {
+            "name": "File Manager",
+            "link": "admin.filemanager.dashboard.index"
+        }
+    ]
+}

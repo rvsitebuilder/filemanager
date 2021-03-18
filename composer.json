@@ -1,0 +1,61 @@
+{
+    "name": "rvsitebuilder/filemanager",
+    "type": "rvsitebuilder-app",
+    "description": "Bring all file browsing, editing, removing, and managing tools in your website admin.",
+    "minimum-stability": "stable",
+    "keywords": [
+        "laravel",
+        "filemanager"
+    ],
+    "authors": [
+        {
+            "name": "RVGlobalSoft",
+            "email": "support@rvglobalsoft.com"
+        }
+    ],
+    "autoload": {
+        "classmap": [],
+        "psr-4": {
+            "Rvsitebuilder\\Filemanager\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {}
+    },
+    "extra": {
+        "component": "package",
+        "laravel": {
+            "providers": [
+                "Rvsitebuilder\\Filemanager\\FilemanagerServiceProvider"
+            ],
+            "dont-discover": [
+                "alexusmai/laravel-file-manager"
+            ]
+        },
+        "rvsitebuilder": {
+            "require": {
+                "php-function": [
+                    "json_decode",
+                    "file_put_contents"
+                ],
+                "php-ini": {
+                    "max_execution_time": "30",
+                    "memory_limit": "64M",
+                    "allow_url_fopen": "On"
+                }
+            }
+        }
+    },
+    "config": {
+        "optimize-autoloader": false,
+        "classmap-authoritative": false,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "require": {
+        "ext-gd": "*",
+        "ext-fileinfo": "*",
+        "ext-exif": "*",
+        "alexusmai/laravel-file-manager": "^2.4.3"
+    }
+}
