@@ -138,10 +138,8 @@ class FilemanagerServiceProvider extends ServiceProvider
         //merge config
         $newConfig = array_merge(config('file-manager.aclRules.1'), $newConfig);
 
-        Config::set([
-            'override' => [
-                'file-manager.aclRules.1' => $newConfig,
-            ],
+        Config::get('override')->push([
+            'file-manager.aclRules.1' => $newConfig,
         ]);
 
         // Config Repository
