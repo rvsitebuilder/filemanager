@@ -15,7 +15,7 @@
 @endpush
 
 @push('package-scripts')
-    <script>
+    <script nonce="{{ csrf_token() }}">
         var select_disk = '{{ $disk }}';
         var select_path = '{{ $path }}';
     </script>
