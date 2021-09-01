@@ -91,7 +91,7 @@ return [
      */
     'configRepository' => DefaultConfigRepository::class,
 
-        /*
+    /*
      * ACL rules repository
      *
      * Default - ConfigACLRepository (see rules in - aclRules)
@@ -122,9 +122,18 @@ return [
         ],
         1 => [
             //all vender/packages/node_modules access: 0 - deny
-            ['disk' => 'apps', 'path' => '*/*/node_modules', 'access' => 0],
+            [
+                'disk' => 'apps',
+                'path' => '*/*/node_modules',
+                'access' => 0,
+            ],
             //under folder vendor rvsitebuilder/* access: 1 read
-            ['disk' => 'apps', 'path' => 'rvsitebuilder/*', 'access' => 1],
+            [
+                'disk' => 'apps',
+                'path' => 'rvsitebuilder/*',
+                'access' => 1,
+            ],
+
         ],
     ],
 
@@ -133,5 +142,6 @@ return [
      *
      * null or value in minutes
      */
-    'aclRulesCache' => null,
+    'aclRulesCache'
+=> null,
 ];
