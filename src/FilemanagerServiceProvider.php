@@ -5,6 +5,7 @@ namespace Rvsitebuilder\Filemanager;
 use Alexusmai\LaravelFileManager\Middleware\FileManagerACL;
 use Alexusmai\LaravelFileManager\Services\ACLService\ACLRepository;
 use Alexusmai\LaravelFileManager\Services\ConfigService\ConfigRepository;
+use Config;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 use Lib\Apps\Info;
@@ -57,7 +58,9 @@ class FilemanagerServiceProvider extends ServiceProvider
 
     public function defineVendorPublish(): void
     {
-        $this->publishes([__DIR__ . '/../public' => public_path('vendor/rvsitebuilder/filemanager')], 'public');
+        $this->publishes([
+            __DIR__ . '/../public' => public_path('vendor/rvsitebuilder/filemanager'),
+        ], 'public');
     }
 
     /**
@@ -114,21 +117,30 @@ class FilemanagerServiceProvider extends ServiceProvider
         $newConfig = [];
         foreach ($privatePackages as $vendor => $aPackages) {
             foreach ($aPackages as $packageName => $value) {
-                $newConfig[] = ['disk' => 'apps', 'path' => "{$vendor}/{$packageName}/*", 'access' => 2];
+                $newConfig[] = [
+                    'disk' => 'apps',
+                    'path' => "{$vendor}/{$packageName}/*",
+                    'access' => 2,
+                ];
             }
         }
         //create config public app access = 1 read only
         $publicPackages = $packageInfos['public'];
         foreach ($publicPackages as $vendor => $aPackages) {
             foreach ($aPackages as $packageName => $value) {
-                $newConfig[] = ['disk' => 'apps', 'path' => "{$vendor}/{$packageName}/*", 'access' => 1];
+                $newConfig[] = [
+                    'disk' => 'apps',
+                    'path' => "{$vendor}/{$packageName}/*",
+                    'access' => 1,
+                ];
             }
         }
         //merge config
         $newConfig = array_merge(config('file-manager.aclRules.1'), $newConfig);
 
-        // Overwrite config aclRules
-        $this->app['config']->set('file-manager.aclRules.1', $newConfig);
+        Config::get('override')->push([
+            'file-manager.aclRules.1' => $newConfig,
+        ]);
 
         // Config Repository
         $this->app->bind(

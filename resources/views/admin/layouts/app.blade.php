@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 
 @section('leftmenu')
-	@include('admin.includes.leftmenu', ['package_name' => "rvsitebuilder/filemanager"])
+    @include('admin.includes.leftmenu', ['package_name' => "rvsitebuilder/filemanager"])
 @endsection
 
 
@@ -11,18 +11,18 @@
     {{ style(@mixcdn('css/uikitv2.css', 'vendor/rvsitebuilder/wysiwyg')) }}
     {{ style(mix('css/bootstrap.css', 'vendor/rvsitebuilder/core')) }}
 
-    
+
 @endpush
 
 @push('package-scripts')
-    <script>
+    <script nonce="{{ csrf_token() }}">
         var select_disk = '{{ $disk }}';
         var select_path = '{{ $path }}';
     </script>
     {{ script(mix('app.js', 'vendor/rvsitebuilder/filemanager')) }}
-    
+
     <!-- package-scripts -->
-   
+
 @endpush
 
 @push('package-styles')
