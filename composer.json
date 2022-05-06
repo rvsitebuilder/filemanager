@@ -56,6 +56,6 @@
         "ext-gd": "*",
         "ext-fileinfo": "*",
         "ext-exif": "*",
-        "alexusmai/laravel-file-manager": "^2.4.3"
+        "alexusmai/laravel-file-manager": "^2.5"
     }
 }
